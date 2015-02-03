@@ -4,7 +4,8 @@
         <link type="text/css" rel="stylesheet" href="style.css"/>
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="app.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>-->
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
         <title>GATq HOME</title>
     </head>
 
@@ -12,6 +13,15 @@
         <div id="load">
             <h1>Setting Up</h1>
         </div>
+
+        <!--<div id="sampleDiv" style="width: 100px; background-color: Gray;">
+            Zoom Me
+        </div>
+        <button onclick="sampleDiv.style.zoom='300%'">Zoom 300%</button>
+        <button onclick="sampleDiv.style.zoom='200%'">Zoom 200%</button>
+        <button onclick="sampleDiv.style.zoom='100%'">Zoom 100%</button>-->
+
+        <!---->
 
         <ul id="navbar">
             <li class="projects">PROJECTS</li>
@@ -21,9 +31,13 @@
             <li class="social">SOCIAL</li>
         </ul>
 
+        <!---->
+
         <div id="header">
             <h1>0</h1>
         </div>
+
+        <!---->
 
         <div id="home">
             <div class="column">
@@ -32,20 +46,8 @@
                     <p>I am a Computer Engineer from Georgia Tech who enjoys programming,
                     designing, and making games.</p>
                 </div>
-                <div class="front-1"><h1>Current Projects</h1>
-                </div>
-                <div><h1>test</h1>
-                    <h2>test</h2>
-                    <p>blahblahblah</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div class="front-2"><h1>Current Activites</h1>
-                </div>
-            </div>
-
-            <ul class="pane">
                 <li class="splash">
-                    <div class="splash"><img src="https://lh6.googleusercontent.com/-hWhR64vPuu8/VIxep8OmiaI/AAAAAAAAFa4/UcWRO03X4Bw/s800/CAM00243.jpg"
+                    <div class="splash"><img id="test1" src="https://lh6.googleusercontent.com/-hWhR64vPuu8/VIxep8OmiaI/AAAAAAAAFa4/UcWRO03X4Bw/s800/CAM00243.jpg"
                         width="auto"height="400em"/>
                         <p>I also enjoying reading tech articles and books,
                         playing games, and working on my site during my free time.</p>
@@ -62,16 +64,26 @@
                         <p>test</p>
                     </div>
                 </li>
+
+                <div class="front-1"><h1>Current Project 1</h1>
+                </div>
                 <li>1</li>
-                <li>
-                    <div class="splash"><p>stuff56</p>
-                    </div>
-                    <div><p>2ndstuff45</p>
-                    </div>
-                </li>
+
+                <div class="front-2"><h1>Current Project 2</h1>
+                </div>
                 <li>2</li>
+
+                <div class="front-3"><h1>Current Activity</h1>
+                </div>
+                <li>3</li>
+            </div>
+
+
+            <ul class="pane">
             </ul>
         </div>
+
+        <!---->
 
         <div id="projects">
             <div class="column">
@@ -79,41 +91,6 @@
                     <h2>Collection of Stuff</h2>
                     <p>work,fun,mini</p>
                 </div>
-                <div><h1>C4 Bot</h1>
-                    <h2>Automated Connect 4 Player</h2>
-                    <p>play against</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>HCI Helmet</h1>
-                    <h2>Concept for Human-Computer Interaction Device</h2>
-                    <p>plane</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>Robot Arm</h1>
-                    <h2>Gesture Control Armature</h2>
-                    <p>embedded</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>AmigoBot</h1>
-                    <h2>Warning System and Pathfinding</h2>
-                    <p>ta</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>Tablet Writer</h1>
-                    <h2>Write on Screen to Interpret Letters</h2>
-                    <p>gmk</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div class="front-1"><h1>Goo</h1>
-                    <h2>Goo (Fighting Game)</h2>
-                    <ol>
-                        <li>Fighting game.</li>
-                    </ol>
-                    <p>blahblahblah</p>
-                </div>
-            </div>
-
-            <ul class="pane">
                 <li class="splash">
                     <div class="splash"><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
                         width="250"height="250">
@@ -121,6 +98,16 @@
                     <div><p>empty</p>
                     </div>
                 </li>
+
+                <div><h1>C4 Bot</h1>
+                    <h2>Automated Connect 4 Player</h2>
+                    <p>Senior Design Project at Georgia Tech that consisted of four team
+                    members and a supervisor with the goal of creating a project to motivate
+                    students in STEM schools to pursue a career in engineering. It was decide
+                    that we would create an autonomous playing machine that would not only
+                    play Connect 4 against another person, but would also be semi-portable.</p>
+                    <p>Completed during Spring 2014.</p>
+                </div>
                 <li>
                     <div class="splash"><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
                         width="250"height="250">
@@ -167,6 +154,12 @@
                         <p>doc</p>
                     </div>
                 </li>
+
+                <div><h1>HCI Helmet</h1>
+                    <h2>Concept for Human-Computer Interaction Device</h2>
+                    <p>plane</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffp2</p>
                     </div>
@@ -189,6 +182,68 @@
                         <p>temp</p>
                     </div>
                 </li>
+
+                <div><h1>Robot Arm</h1>
+                    <h2>Gesture Control Armature</h2>
+                    <p>Created as the final project for Embedded System Design at Georgia
+                    Tech, the main idea was to control a robotic armture through only hand
+                    motions.</p>
+                    <p>Completed during Fall 2013</p>
+                </div>
+                <li>
+                    <div class="splash"><img src="https://lh6.googleusercontent.com/-8VpipLT_jwM/VI3o9I_cNvI/AAAAAAAAFjc/jC-uyKRx1ho/s1280/CAM00203.jpg"
+                        width="auto"height="350">
+                    </div>
+                    <div><iframe src="https://www.youtube.com/embed/yX5Iq38NsEU"
+                        width="560"height="315"> </iframe>
+                    </div>
+                    <div><img src="https://lh6.googleusercontent.com/-IF0qOhu4m6I/VI3o1qGu3hI/AAAAAAAAFjM/f8qQQhhgUjc/s1280/CAM00202.jpg"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                    <div><img src="http://www.parallax.com/sites/default/files/styles/full-size-product/public/28046.png"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                    <div><h3>Documentation</h3>
+                        <a href="https://developer.mbed.org/users/GAT27/notebook/gesture-arm-robot/"
+                        target="_blank">
+                        Gesture Arm Robot</a>
+                        <a href="https://developer.mbed.org/users/GAT27/notebook/si1143-gesture-sensor/"
+                        target="_blank">
+                        Gesture Sensor</a>
+                        <p>doc</p>
+                        <p>doc</p>
+                        <p>doc</p>
+                        <p>doc</p>
+                    </div>
+                </li>
+
+                <div><h1>AmigoBot</h1>
+                    <h2>Warning System and Pathfinding</h2>
+                    <p>ta</p>
+                    <p>blahblahblah</p>
+                </div>
+                <li>
+                    <div class="splash"><p>stuffp2</p>
+                    </div>
+                    <div><p>2ndstuff45</p>
+                    </div>
+                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                </li>
+
+                <div><h1>Tablet Writer</h1>
+                    <h2>Write on Screen to Interpret Letters</h2>
+                    <p>gmk</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffp2</p>
                     </div>
@@ -206,11 +261,13 @@
                         width="250"height="250">
                         <p>temp</p>
                     </div>
-                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
-                        width="250"height="250">
-                        <p>temp</p>
-                    </div>
                 </li>
+
+                <div><h1>Other Stuff</h1>
+                    <h2>ppppp</h2>
+                    <p>g</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffp2</p>
                     </div>
@@ -225,24 +282,14 @@
                         <p>temp</p>
                     </div>
                 </li>
-                <li>
-                    <div class="splash"><p>stuffp2</p>
-                    </div>
-                    <div><p>2ndstuff45</p>
-                    </div>
-                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
-                        width="250"height="250">
-                        <p>temp</p>
-                    </div>
-                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
-                        width="250"height="250">
-                        <p>temp</p>
-                    </div>
-                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
-                        width="250"height="250">
-                        <p>temp</p>
-                    </div>
-                </li>
+
+                <div class="front-1"><h1>Goo</h1>
+                    <h2>Goo (Fighting Game)</h2>
+                    <ol>
+                        <li>Fighting game.</li>
+                    </ol>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>fight1</p>
                     </div>
@@ -273,35 +320,45 @@
                         <p>temp</p>
                     </div>
                 </li>
+
+                <div class="front-2"><h1>3DS XL Capture Card</h1>
+                    <h2>Personal Research to Create a Capture Card</h2>
+                    <ol>
+                        <li>3.</li>
+                    </ol>
+                    <p>blahblahblah</p>
+                </div>
+                <li>
+                    <div class="splash"><p>stuffp2</p>
+                    </div>
+                    <div><p>2ndstuff45</p>
+                    </div>
+                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                    <div><img src="https://codecademy-content.s3.amazonaws.com/courses/web-beginner-en-3pc6w/images/avatar.jpg"
+                        width="250"height="250">
+                        <p>temp</p>
+                    </div>
+                </li>
+            </div>
+
+
+            <ul class="pane">
             </ul>
         </div>
 
+        <!---->
+
         <div id="social">
             <div class="column">
-                <div class="splash front-2"><h1>surfing</h1>
+                <div class="splash front-3"><h1>surfing</h1>
                     <h2>some suffs</h2>
                     <ol>
                         <li>Web design.</li>
                     </ol>
                 </div>
-                <div><h1>test3</h1>
-                    <h2>test3</h2>
-                    <p>blahblahblah</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>test3</h1>
-                    <h2>test3</h2>
-                    <p>blahblahblah</p>
-                    <p>blahblahblah</p>
-                </div>
-                <div><h1>test3</h1>
-                    <h2>test3</h2>
-                    <p>blahblahblah</p>
-                    <p>blahblahblah</p>
-                </div>
-            </div>
-
-            <ul class="pane">
                 <li class="splash">
                     <div class="splash"><img src="https://lh5.googleusercontent.com/-4-WPfuIYHPY/VJ5PxxtLjyI/AAAAAAAAFsg/z1U-eZMsV1Y/s800/CAM00401.jpg"
                         width="auto"height="400em"/>
@@ -314,40 +371,68 @@
                     <div><p>type2</p>
                     </div>
                 </li>
+
+                <div><h1>test3</h1>
+                    <h2>test3</h2>
+                    <p>blahblahblah</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffs2</p>
                     </div>
                     <div><p>2ndstuff45</p>
                     </div>
                 </li>
+
+                <div><h1>test3</h1>
+                    <h2>test3</h2>
+                    <p>blahblahblah</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffs2</p>
                     </div>
                     <div><p>2ndstuff45</p>
                     </div>
                 </li>
+
+                <div><h1>test3</h1>
+                    <h2>test3</h2>
+                    <p>blahblahblah</p>
+                    <p>blahblahblah</p>
+                </div>
                 <li>
                     <div class="splash"><p>stuffs2</p>
                     </div>
                     <div><p>2ndstuff45</p>
                     </div>
                 </li>
+            </div>
+
+
+            <ul class="pane">
             </ul>
         </div>
 
+        <!---->
+
         <div class="scroll">
-            <img class="arrow" src="glyphicons/glyphicons-601-chevron-up.png"/>
+            <div class="tabs">1</div>
+            <!--<img class="arrow" src="glyphicons/glyphicons-601-chevron-up.png"/>
             <b>0</b>
-            <img class="arrow" src="glyphicons/glyphicons-602-chevron-down.png"/>
+            <img class="arrow" src="glyphicons/glyphicons-602-chevron-down.png"/>-->
         </div>
         <div class="flip">
             <img class="arrow" src="glyphicons/glyphicons-237-zoom-in.png"/>
             <img class="arrow" src="glyphicons/glyphicons-369-collapse.png"
             width="22em"height="auto"style="transform:scaleX(-1)"/>
             <b>0</b>
-            <img class="arrow" src="glyphicons/glyphicons-369-collapse.png"width="22em"height="auto"/>
+            <img class="arrow" src="glyphicons/glyphicons-369-collapse.png"
+            width="22em"height="auto"/>
             <img class="arrow" src="glyphicons/glyphicons-182-download-alt.png"/>
         </div>
+
+        <!---->
 
         <div id="footer"><h2>RETURN</h2>
             <div>
@@ -419,9 +504,7 @@
                 <p>Design of this site is by me to practice HTML, CSS, and jQuery/Javascript.</p>
                 <li>Need to finish ABOUT tab (this page).</li>
                 <li>Need to finish navbar.</li>
-                <li>Need to fix going to home from home bug.</li>
                 <li>Need to start adding content and pictures.</li>
-                <li>Need to redesign scroll feature and fix other page scroll bug (right side).</li>
                 <li>Need to finish adding final features to pane window (left side).</li>
                 <li>Redesign some animations and additional design tweaks.</li>
                 <li>Final cleanup.</li>
@@ -430,7 +513,8 @@
                 </script>
             </ul>
 
-            <a href="view-source:http://gatq.me/">
+            <a href="https://github.com/GAT27/GATQ_website"
+            target="_blank">
             raw source</a>
         </div>
     </body>

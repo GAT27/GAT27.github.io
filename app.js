@@ -1,6 +1,11 @@
 var main = function()
-{	//Set up current front page elements to DOM
-	for (var i=0;i<(-2+$("#home>div").children().length);i++)
+{	//Place content into panes
+	$(".pane").each(function()
+	{	$(this).append($(this).prev().children("li"));
+	});
+	
+	//Set up current front page elements to DOM
+	for (var i=0;i<(-1+$("#home>div").children().length);i++)
 	{	var front = ".front-" + (i+1);
 		front = $(front);
 		front.first()
@@ -17,9 +22,11 @@ var main = function()
 	$(".column>div").each(function()
 	{	$(this).children().first().siblings().hide();
 	});
-	var marker_pillar = reskin(location.hash);
-	var marker = marker_pillar[0];
-	var pillar = marker_pillar[1];
+	var marker_pillar_color = reskin(location.hash);
+	var marker = marker_pillar_color[0];
+	var pillar = marker_pillar_color[1];
+	var color1 = marker_pillar_color[2];
+	var color2 = marker_pillar_color[3];
 	pillar.toggleClass("pillar");
 	var reference = $("#footer>div>div");
 	reference.each(function()
@@ -32,14 +39,17 @@ var main = function()
 	//Reset page on navigation change
 	if ("onhashchange" in window)
 	{	window.onhashchange = function()
-		{	marker_pillar = reskin(location.hash);
+		{	marker_pillar_color = reskin(location.hash);
 			pillar.toggleClass("pillar");
-			marker = marker_pillar[0];
-			pillar = marker_pillar[1];
+			marker = marker_pillar_color[0];
+			pillar = marker_pillar_color[1];
+			color1 = marker_pillar_color[2];
+			color2 = marker_pillar_color[3];
 			pillar.toggleClass("pillar");
 		};
 	}
 	
+	//Pane controls
 	$(".arrow").click(function()
 	{	if ($(this).parent().hasClass("flip"))
 		{	var col = $(".pane>li").first().children().finish();
@@ -69,16 +79,42 @@ var main = function()
 			current.fadeOut(600,function(){upnext.fadeIn(600);});
 			$(".flip>b").text(1+marker.index(upnext) + " / " + col.length);
 		}
-		else
-			marker = colscroll(!$(this).is($(".scroll>img").last()),pillar);
+		//else
+			//marker = colscroll(!$(this).is($(".scroll>img").last()),pillar);
 	});
 	
+	//Pillar navigation by up or down
 	$("body").on("click",".pillar",function()
 	{	var col = $("div.column").first().children();
 		if ($(this).is(col.first()) || $(this).is($(".scroll").next()))
-			marker = colscroll(!$(this).is(col.first()),pillar);
+			marker = colscroll(!$(this).is(col.first()),pillar,color1,color2);
 		return false;
 	});
+	
+	//Pillar navigation by tabs
+	$("body").on("click",".tabs",function()
+	{	var escape = 0;
+		while ($(".scroll>div").index($(this)) != pillar.index($(".inpillar")))
+		{	marker = colscroll(false,pillar,color1,color2);
+			escape++; if (escape>20) {alert("fail");break;}
+		}
+		return false;
+	});
+	
+	//Pillar navigation by mouse wheel
+	//http://www.sitepoint.com/html5-javascript-mouse-wheel/
+	if (window.addEventListener) 
+	{	window.addEventListener("mousewheel",wheelscroll,false);
+		window.addEventListener("DOMMouseScroll",wheelscroll,false);
+	}
+	else
+		window.attachEvent("onmousewheel",wheelscroll);
+	function wheelscroll(e)
+	{	var e = window.event || e;
+		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+		marker = colscroll(delta-1,pillar,color1,color2);
+		return false;
+	};
 	
 	$("#navbar>li").click(function()
 	{	if ($(this).hasClass("home"))
@@ -104,6 +140,8 @@ var main = function()
 	});
 };
 
+/**/
+
 var reskin = function(upfront)
 {	//Reorder navbar
 	var nav = $("#navbar>li");
@@ -117,28 +155,30 @@ var reskin = function(upfront)
 	//Select new page theme
 	if (upfront == "#projects")
 	{	upfront = $(upfront);
+		var color1 = "#11a6a6";
+		var color2 = "#220040";
 		$("head>title").text("GATq PROJECTS");
-		$("body").css({"color":"#220040","background-color":"#11a6a6"});
-		$(".column").css({"color":"#11a6a6","background-color":"#220040"});
 	}
 	else if (upfront == "#social")
 	{	upfront = $(upfront);
+		var color1 = "#cf1500";
+		var color2 = "#5fc24e";
 		$("head>title").text("GATq SOCIAL");
-		$("body").css({"color":"#5fc24e","background-color":"#cf1500"});
-		$(".column").css({"color":"#cf1500","background-color":"#5fc24e"});
 	}
 	else
 	{	upfront = $("#home");
+		var color1 = "#dfaf20";
+		var color2 = "#3d160c";
 		$("head>title").text("GATq HOME");
-		$("body").css({"color":"#3d160c","background-color":"#dfaf20"});
-		$(".column").css({"color":"#dfaf20","background-color":"#3d160c"});
 	}
+	$("body").css({"color":color2,"background-color":color1});
+	$(".column").css({"color":color1,"background-color":color2});
 	
 	//Return previous column to its original state
 	var escape = 0;
 	var dtop = $("#header").next().children("div").children();
 	while (!dtop.first().hasClass("splash"))
-	{	colscroll(false,dtop);//parameters do not matter here
+	{	colscroll(false,dtop,0,0);//parameters do not matter here
 		dtop = $("#header").next().children("div").children();
 		escape++; if (escape>20) {alert("fail");break;}
 	}
@@ -165,21 +205,32 @@ var reskin = function(upfront)
 	marker.first().show().parent().show();
 	$("#header>*").replaceWith(pillar.first().children("h1"));
 	
-	//Set up column and pane views
+	//Set up column view
 	pillar.first().show().addClass("inpillar").next().show().prev()
 	.after($(".scroll").css({"width":"20%","height":"70%",
 							 "display":"inline-block"}))
 	.before(pillar.last().show());
 	//.end().first().children().show();
 	pillar.first().children().show();
+	
+	//Set up side tabs
+	var h = (100/pillar.length) + "%";
+	$(".scroll").children().remove().end().append($("<div>").text(1).css("height",h));
+	for (var i=1;i<pillar.length;i++)
+		$(".scroll").append($("<div>").text(1+i).addClass("tabs")
+							.css({"height":h,"color":color2,"background-color":color1}));
+	
+	//Set up pane view
 	$(".pane").first().append($(".flip").show());
 	$(".flip>b").text("1 / " + marker.length);
-	$(".scroll>b").text("1 / " + pillar.length);
+	//$(".scroll>b").text("1 / " + pillar.length);
 	
-	return [marker,pillar];
+	return [marker,pillar,color1,color2];
 };
 
-var colscroll = function(action,pillar)
+/**/
+
+var colscroll = function(action,pillar,color1,color2)
 {	//Set up controls to handle column scrolling and pane organizing
 	var col = $("div.column").first().children();
 	var ctop = col.first();
@@ -193,7 +244,8 @@ var colscroll = function(action,pillar)
 		cbot.addClass("inpillar").after($(".scroll")).children().show()
 		.first().appendTo($("#header"));
 		$(".scroll").next().show();
-		$(".scroll>b").text(1+pillar.index(cbot) + " / " + (-1+col.length));
+		$(".scroll").children().eq(pillar.index(cbot)).toggleClass()
+		.css({"color":color1,"background-color":color2});
 		var upnext = current.next();
 		list.last().after(current);
 	}
@@ -202,10 +254,13 @@ var colscroll = function(action,pillar)
 		.addClass("inpillar").after($(".scroll")).children().show()
 		.first().appendTo($("#header"));
 		cbot.hide();
-		$(".scroll>b").text(1+pillar.index(ctop) + " / " + (-1+col.length));
+		$(".scroll").children().eq(pillar.index(ctop)).toggleClass()
+		.css({"color":color1,"background-color":color2});
 		var upnext = list.last();
 		current.before(upnext);
 	}
+	$(".scroll").children().eq(pillar.index(cmid)).addClass("tabs")
+	.css({"color":color2,"background-color":color1});
 	
 	//Return header title back and organize pane to starting state
 	cmid.prepend($("#header>*").first())
@@ -224,5 +279,7 @@ var colscroll = function(action,pillar)
 	
 	return marker;
 };
+
+/**/
 
 $(main);
