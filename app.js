@@ -14,7 +14,7 @@ var main = function()
 		var fl = front.last().parent().children().index(front.last());
 		$(".pane>li").eq(ff)
 		.replaceWith(front.last().parent().siblings().children()
-					.eq(fl).clone().removeClass("splash"));
+					 .eq(fl).clone().removeClass("splash"));
 	}
 	
 	//Prepare page layout
@@ -22,13 +22,18 @@ var main = function()
 	$(".column>div").each(function()
 	{	$(this).children().first().siblings().hide();
 	});
+	$(".pane>li>div").each(function()
+	{	$(this).prepend($(this).children("div").children().first().clone()
+						.css({"width":"55%","height":"85%","float":"left"}));
+	});
 	var marker_pillar_color = reskin(location.hash);
 	var marker = marker_pillar_color[0];
 	var pillar = marker_pillar_color[1];
 	var color1 = marker_pillar_color[2];
 	var color2 = marker_pillar_color[3];
 	pillar.toggleClass("pillar");
-	var reference = $("#footer>div>div");
+	var minipic = $(".pane>li>div>div>*");
+	var reference = $("#footer>a");
 	reference.each(function()
 	{	$(this).children().first().siblings().hide();
 	});
@@ -56,7 +61,8 @@ var main = function()
 			var current = col.first();
 			if ($(this).is($(".flip>img").eq(0)))
 			{	var upnext = current;
-				window.open(current.children().attr("src"),"_blank");
+				if (current.children().attr("src").length)
+					window.open(current.children().attr("src"),"_blank");
 			}
 			else if ($(this).is($(".flip>img").eq(1)))
 			{	var upnext = col.last();
@@ -76,11 +82,21 @@ var main = function()
 				}
 				var upnext = current;
 			}
-			current.fadeOut(600,function(){upnext.fadeIn(600);});
+			current.fadeOut(0,function(){upnext.fadeIn(0);});
 			$(".flip>b").text(1+marker.index(upnext) + " / " + col.length);
 		}
 		//else
 			//marker = colscroll(!$(this).is($(".scroll>img").last()),pillar);
+	});
+	
+	//Preview picture controls
+	minipic.mouseenter(function()
+	{	$(this).closest("li>div").children().first().remove();
+		$(this).closest("li>div").prepend($(this).clone()
+										  .css({"width":"55%","height":"85%","float":"left"}));
+	});
+	minipic.click(function()
+	{	window.open($(this).attr("src"),"_blank");
 	});
 	
 	//Pillar navigation by up or down
@@ -92,14 +108,30 @@ var main = function()
 	});
 	
 	//Pillar navigation by tabs
-	$("body").on("click",".tabs",function()
+	$("body").on({click:function()
 	{	var escape = 0;
+		var ut = pillar.index($(".inpillar")) - $(".scroll>div").index($(this));
+		var dt = $(".scroll>div").index($(this)) - pillar.index($(".inpillar"));
+		if (ut < 0)
+			ut += pillar.length;
+		else
+			dt += pillar.length;
 		while ($(".scroll>div").index($(this)) != pillar.index($(".inpillar")))
-		{	marker = colscroll(false,pillar,color1,color2);
+		{	marker = colscroll(dt<ut,pillar,color1,color2);
 			escape++; if (escape>20) {alert("fail");break;}
 		}
-		return false;
-	});
+		$(this).animate({right:"0%",width:"100%"},0).children().remove();
+	},
+	mouseenter:function()
+	{	$(this).animate({right:"400%",width:"500%"},"fast")
+		.append(pillar.eq($(".scroll>div").index($(this))).children("h1").clone()
+				.css("font-size","2vw"));
+	},
+	mouseleave:function()
+	{	$(this).animate({right:"0%",width:"100%"},"fast")
+		.children(/*":not(:first-child)"*/).remove();
+	}
+	},".tabs",false);
 	
 	//Pillar navigation by mouse wheel
 	//http://www.sitepoint.com/html5-javascript-mouse-wheel/
@@ -132,18 +164,23 @@ var main = function()
 	});
 	
 	reference.hover(function()
-	{	$(this).children().first().fadeOut(600);
-		$(this).children().first().siblings().fadeIn(600);
+	{	$(this).children().first().fadeOut(0);//.css({"z-index":"0","position":"relative"});
+		$(this).children().first().siblings().fadeIn(0);
 	},function()
-	{	$(this).children().first().fadeIn(600);
-		$(this).children().first().siblings().fadeOut(600);
+	{	$(this).children().first().fadeIn(0);
+		$(this).children().first().siblings().fadeOut(0);
 	});
 };
 
 /**/
 
 var reskin = function(upfront)
-{	//Reorder navbar
+{	//Split hash for manual pane select
+	var upsplit = upfront.split("-",2);
+	upfront = upsplit[0];
+	upsplit = parseInt(upsplit[1]);
+	
+	//Reorder navbar and safetly move pane controls
 	var nav = $("#navbar>li");
 	if (upfront == "#"+nav.first().attr("class"))
 		nav.first().toggleClass()
@@ -151,30 +188,32 @@ var reskin = function(upfront)
 	else if (upfront == "#"+nav.last().attr("class"))
 		nav.last().toggleClass()
 		.after(nav.first().before(nav.eq(2).toggleClass())).insertBefore(nav.eq(3));
+	$("#footer").before($(".flip"));
 	
 	//Select new page theme
 	if (upfront == "#projects")
 	{	upfront = $(upfront);
-		var color1 = "#11a6a6";
-		var color2 = "#220040";
+		var color1 = "#099696";
+		var color2 = "#10001f";
 		$("head>title").text("GATq PROJECTS");
 	}
 	else if (upfront == "#social")
 	{	upfront = $(upfront);
-		var color1 = "#cf1500";
-		var color2 = "#5fc24e";
+		var color1 = "#660a00";
+		var color2 = "#7cc96f";
 		$("head>title").text("GATq SOCIAL");
 	}
 	else
 	{	upfront = $("#home");
-		var color1 = "#dfaf20";
-		var color2 = "#3d160c";
+		var color1 = "#b39d5d";
+		var color2 = "#802e19";
 		$("head>title").text("GATq HOME");
 	}
 	$("body").css({"color":color2,"background-color":color1});
 	$(".column").css({"color":color1,"background-color":color2});
 	
 	//Return previous column to its original state
+	//$(".pane").first().children("li").first().fadeOut(600);
 	var escape = 0;
 	var dtop = $("#header").next().children("div").children();
 	while (!dtop.first().hasClass("splash"))
@@ -212,16 +251,27 @@ var reskin = function(upfront)
 	.before(pillar.last().show());
 	//.end().first().children().show();
 	pillar.first().children().show();
+	//alert(pillar.eq(8).width());//.offsetWidth);
+	//alert(pillar.eq(8).children("h1").textWidth());
 	
 	//Set up side tabs
 	var h = (100/pillar.length) + "%";
-	$(".scroll").children().remove().end().append($("<div>").text(1).css("height",h));
+	$(".scroll").children().remove().end().append($("<div>").text(1)
+	.css({"width":"100%","height":h,"position":"relative"}));
 	for (var i=1;i<pillar.length;i++)
 		$(".scroll").append($("<div>").text(1+i).addClass("tabs")
-							.css({"height":h,"color":color2,"background-color":color1}));
+							.css({"width":"100%","height":h,"position":"relative",
+								  "color":color2,"background-color":color1,
+								  "outline":"1px solid","outline-color":color2}));
 	
 	//Set up pane view
-	$(".pane").first().append($(".flip").show());
+	if (!isNaN(upsplit) && upsplit<=pillar.length && upsplit>0)
+	{	for (upsplit--;upsplit>0;upsplit--)
+			marker = colscroll(true,pillar,color1,color2);
+	}
+	//$(".pane").first().append($(".flip").show());
+	//alert($(".pane").first().text());
+	$(".pane").first().after($(".flip").show());
 	$(".flip>b").text("1 / " + marker.length);
 	//$(".scroll>b").text("1 / " + pillar.length);
 	
@@ -232,11 +282,11 @@ var reskin = function(upfront)
 
 var colscroll = function(action,pillar,color1,color2)
 {	//Set up controls to handle column scrolling and pane organizing
-	var col = $("div.column").first().children();
+	var col = $(".column").first().children();
 	var ctop = col.first();
 	var cmid = ctop.next();
 	var cbot = $(".scroll").next();
-	var list = $("ul.pane").first().children("li").finish();
+	var list = $(".pane").first().children("li").finish();
 	var current = list.first();
 	
 	if (action)//Increases index (down), get top item and push it to the bottom
@@ -244,7 +294,7 @@ var colscroll = function(action,pillar,color1,color2)
 		cbot.addClass("inpillar").after($(".scroll")).children().show()
 		.first().appendTo($("#header"));
 		$(".scroll").next().show();
-		$(".scroll").children().eq(pillar.index(cbot)).toggleClass()
+		$(".scroll").children().eq(pillar.index(cbot)).removeClass("tabs")
 		.css({"color":color1,"background-color":color2});
 		var upnext = current.next();
 		list.last().after(current);
@@ -254,7 +304,7 @@ var colscroll = function(action,pillar,color1,color2)
 		.addClass("inpillar").after($(".scroll")).children().show()
 		.first().appendTo($("#header"));
 		cbot.hide();
-		$(".scroll").children().eq(pillar.index(ctop)).toggleClass()
+		$(".scroll").children().eq(pillar.index(ctop)).removeClass("tabs")
 		.css({"color":color1,"background-color":color2});
 		var upnext = list.last();
 		current.before(upnext);
@@ -274,12 +324,22 @@ var colscroll = function(action,pillar,color1,color2)
 	}
 	c.first().show().siblings().hide();
 	var marker = $(".pane>li").first().children();
-	current.fadeOut(600,function(){upnext.fadeIn(600);});
+	current.fadeOut(0,function(){upnext.fadeIn(0);});
 	$(".flip>b").text("1 / " + marker.length);
 	
 	return marker;
 };
 
 /**/
+
+//http://stackoverflow.com/questions/1582534/calculating-text-width-with-jquery
+$.fn.textWidth = function()
+{	var html_org = $(this).html();
+	var html_calc = "<span>" + html_org + "</span>";
+	$(this).html(html_calc);
+	var width = $(this).find("span:first").width();
+	$(this).html(html_org);
+	return width;
+};
 
 $(main);

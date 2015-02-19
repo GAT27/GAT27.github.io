@@ -21,8 +21,8 @@ p, li
 	/*margin: 0;
     padding: 0;*/
 }
-/*h1
-{   font-size: 3vw;
+/*div > h1
+{   font-size: 1 vw;
 	margin: 0;
     padding: 0;
 }*/
@@ -43,11 +43,140 @@ p, li
 	text-align: center;
 }
 
+#header
+{	display: inline-block;
+	float: left;
+	width: 76%;
+	height: 11vh;
+	margin: 1%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 8vh;
+	/*outline: 1px solid gray;*/
+}
+
+.column
+{	display: inline-block;
+	float: right;
+	/*position: relative;
+	top: -2em;
+	right: -1em;*/
+	width: 18%;
+	height: 85vh;
+	/*margin: 2% 2%;*/
+	padding: 0 0 2% 2%;
+	border-radius: 20px;
+	list-style-type: none;
+	color: black;
+	background-color: white;
+	transition: color 1s ease-out,
+    			background-color 1s ease-out;
+    /*outline: 1px solid gray;*/
+}
+.pillar
+{	float: left;
+	width: 100%;
+	height: 15%;
+	text-align: center;
+	text-shadow: 2px 2px 2px white;
+	/*outline: 1px solid gray;*/
+}
+.inpillar
+{	display: inline-block;
+	width: 80%;
+	height :70%;
+	text-align: left;
+	text-shadow: none;
+}
+
+.pane
+{	display: inline-block;
+	float: left;
+	width: 78%;
+	height: 65vh;
+	text-align: center;
+	list-style-type: none;
+	margin: 0 0 0 1%;
+    padding: 0;
+    /*outline: 3px solid yellow;*/
+}
+.pane > li, .pane > li > div
+{	/*.float: left;
+	position: relative;*/
+	width: 100%;
+	height: 100%;
+	padding: 2% 1%;
+	/*text-align: center;
+	border-bottom: 5px solid red;
+	outline: 5px solid red;*/
+}
+/*.pane > li > div > *:first-child:not(h3)
+{	float: left;
+	text-align: left;
+	position: relative;
+	width: 49%;*/
+	/*height: 100%;
+	text-align: center;
+	outline: 1px solid green;
+}*/
+.pane > li > div > *:not(div)
+{	/*float: left;
+	clear: both;
+	text-align: left;
+	position: relative;
+	left: -2%;*/
+	/*width: 100%;*/
+
+	/*height: 100%;
+	text-align: center;*/
+	outline: 2px solid purple;
+}
+.pane > li > div > div
+{	/*float: left;
+	text-align: left;*/
+	clear: left;
+	position: relative;/*
+	left: 0%;
+	top: 75%;*/
+	width: 100%;
+	height: 5%;
+	margin: 0;
+	/*height: 100%;
+	text-align: center;*/
+	/*outline: 2px solid gray;*/
+}
+.pane > li > div > div > *
+{	float: left;
+	/*text-align: left;*/
+	/*position: relative;
+	left: 0%;
+	bottom: 0;*/
+	width: 6%;
+	height: 85%;
+	margin: 1%;
+	/*height: 100%;
+	text-align: center;*/
+	/*outline: 1px solid gray;*/
+}
+
+.flip
+{	display: inline-block;
+	/*float: left;*/
+	width: 78%;
+	height: 8vh;
+	text-align: center;
+	/*list-style-type: none;*/
+	margin: 0 0 0 1%;
+    padding: 0;
+    outline: 1px solid blue;
+}
+
 #navbar
 {	clear: both;
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	height: 8vh;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -57,143 +186,16 @@ p, li
 	width: 50%;
 	height: 50%;
 	background-color: yellow;*/
+	outline: 1px solid gray;
 }
 #navbar > li
 {	display: block;
 	float: left;
-	width: 19%;
-	/*outline: 1px solid gray;*/
-	text-align: center;
-}
-
-#header
-{	display: inline-block;
-	float: left;
-	width: 65%;
-	height: 20vh;
-	margin: 1%;
-	text-align: center;
-}
-
-.column
-{	display: inline-block;
-	float: right;
-	position: relative;
-	top: -2em;
-	right: -1em;
-	width: 21%;
-	height: 80vh;
-	padding: 2%;
-	border-radius: 20px;
-	list-style-type: none;
-	color: black;
-	background-color: white;
-	transition: color 1s ease-out,
-    			background-color 1s ease-out;
-}
-.column > div
-{	float: left;
-	width: 100%;
-	height: 15%;
-	text-align: center;
-	/*outline: 1px solid gray;*/
-}
-div.inpillar
-{	display: inline-block;
-	width: 80%;
-	height :70%;
-	text-align: left;
-}
-/*div.scroll
-{	float: right;
-	position: relative;
-	bottom: 85%;
 	width: 20%;
-	height: 70%;
-}*/
-div.scroll > *
-{	/*display: block;
-	float: right;
-	position: relative;
-	top: auto;
-	bottom: auto;*/
-	width: 2em;
-	height: 2em;
-	/*margin: 2.2em 1.5em 2.2em 1.5em;*/
-	/*margin: 20%;
-	margin-top: 25%;
-	margin-right: 20%;
-	margin-bottom: 25%;
-	margin-left: 20%;*/
-	/*padding: .8em;*/
-	text-align: center;
-	outline: 1px solid gray;
-}
-
-.pane
-{	display: inline-block;
-	float: left;
-	width: 71%;
-	height: 50vh;
-	text-align: center;
-	list-style-type: none;
-	margin: 0;
-    padding: 0;
-}
-.pane > li
-{	/*float: left;
-	position: relative;*/
-	width: 100%;
 	height: 100%;
-	/*text-align: center;*/
-	border-bottom: 1px solid gray;
-}
-.pane > li > div > *:not(:first-child)
-{	float: right;
-	/*text-align: left;
-	position: relative;*/
-	width: 49%;
-	/*height: 100%;
-	text-align: center;*/
+	text-align: center;
 	outline: 1px solid gray;
 }
-
-/*.arrow
-{	display: none;
-	clear: left;
-	position: relative;
-	bottom: 80%;
-	border: 1px solid gray;
-}*/
-
-/*.pane > div
-{	display: none;
-}*/
-/*
-div.splash
-{	display: block;
-}
-li.splash
-{	display: block;
-}*/
-/*#sumb
-{	display: block;
-	clear: both;
-}
-#sumb div
-{	display: inline-block;
-	width: 33%;
-}*/
-/*input
-{   border: 0;
-    padding: 12px;
-    font-size: 18px;
-}
-
-input[type="submit"]
-{   background: limegreen;
-    color: black;
-}*/
 
 #footer
 {	position: absolute;
@@ -204,27 +206,48 @@ input[type="submit"]
 	color: white;
 	background-color: #10120a;
 }
-#footer > *
-{	clear: both;
-	/*display: inline-block;*/
+/*#footer > *
+{	/*clear: both;
+	display: inline-block;
 	width: 90%;
-	margin: 0 auto;
+	margin: 0 auto;*/
 	/*height: 5vh;
 	text-align: center;
-	padding: 10% 0 10% 0;*/
-	outline: 1px solid gray;
-}
-#footer > div > div
+	padding: 10% 0 10% 0;
+	outline: 3px solid gray;
+}*/
+#footer > a
 {	display: inline-block;
 	float: left;
-	width: 8em;
-	height: 8em;
-	/*text-align: center;
+	/*width: 8em;
+	height: 8em;*/
+	width: 25%;
+	height: 30%;
+
+	/*height: 100%;
+	text-align: center;
 	margin: 0 inherit;*/
 	/*padding: 0.2em 0;
 	outline: 1px solid gray;
 	display: none;*/
+	outline: 2px solid red;
+}
+#footer > div > a > div
+{	/*display: inline-block;
+	float: left;
+	width: 8em;
+	height: 8em;
+	text-align: center;
+	margin: 0 inherit;*/
+	/*padding: 0.2em 0;
+	outline: 1px solid gray;
+	display: none;*/
+	margin: 0;
+	padding: 2%;
+	outline: 3px solid red;
 }
 /*#footer > div > div > *
 {	position: absolute;
 }/*
+
+  */
